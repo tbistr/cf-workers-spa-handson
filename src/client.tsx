@@ -13,6 +13,12 @@ function App() {
 			<Counter />
 			<h2>Example of API fetch</h2>
 			<ClockButton />
+
+			<h1>Example of working with the database</h1>
+			<h2>Post a message</h2>
+			<PostMessage />
+			<h2>Get all messages</h2>
+			<GetMessages />
 		</>
 	);
 }
@@ -31,8 +37,8 @@ const ClockButton = () => {
 
 	const handleClick = async () => {
 		const res = await client.clock.$get();
-		const data = res.ok ? (await res.json()).time : "Error fetching time";
-		setResponse(data);
+		const data = res.ok ? await res.json() : "Error fetching time";
+		setResponse(JSON.stringify(data, null, 2));
 	};
 
 	return (
@@ -41,6 +47,50 @@ const ClockButton = () => {
 				Get Server Time
 			</button>
 			{response && <pre>{response}</pre>}
+		</div>
+	);
+};
+
+const PostMessage = () => {
+	const [message, setMessage] = useState("");
+	const [response, setResponse] = useState<string | null>(null);
+
+	const handleClick = async () => {
+		const res = await client.messages[":message"].$post({ param: { message } });
+		const data = res.ok ? await res.json() : "Error posting message";
+		setResponse(data);
+	};
+
+	return (
+		<div>
+			<input
+				type="text"
+				value={message}
+				onChange={(e) => setMessage(e.target.value)}
+			/>
+			<button type="button" onClick={handleClick}>
+				Post Message
+			</button>
+			{response && <pre>{JSON.stringify(response, null, 2)}</pre>}
+		</div>
+	);
+};
+
+const GetMessages = () => {
+	const [response, setResponse] = useState<string | null>(null);
+
+	const handleClick = async () => {
+		const res = await client.messages.$get();
+		const data = res.ok ? await res.json() : "Error fetching messages";
+		setResponse(data);
+	};
+
+	return (
+		<div>
+			<button type="button" onClick={handleClick}>
+				Get Messages
+			</button>
+			{response && <pre>{JSON.stringify(response, null, 2)}</pre>}
 		</div>
 	);
 };
