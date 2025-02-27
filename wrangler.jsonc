@@ -3,7 +3,14 @@
 	"name": "react-spa-test",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-02-27",
-	"assets": { "directory": "./dist" }
+	"assets": { "directory": "./dist" },
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "cf-react-spa-d1",
+			"database_id": "a86dd207-6f9b-46de-9b56-d7258f438fc7"
+		}
+	]
 	// "compatibility_flags": [
 	//   "nodejs_compat"
 	// ],
@@ -20,13 +27,6 @@
 	//   {
 	//     "binding": "MY_BUCKET",
 	//     "bucket_name": "my-bucket"
-	//   }
-	// ],
-	// "d1_databases": [
-	//   {
-	//     "binding": "MY_DB",
-	//     "database_name": "my-database",
-	//     "database_id": ""
 	//   }
 	// ],
 	// "ai": {
