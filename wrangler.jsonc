@@ -1,8 +1,9 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "my-app",
+	"name": "react-spa-test",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-02-27"
+	"compatibility_date": "2025-02-27",
+	"assets": { "directory": "./dist" }
 	// "compatibility_flags": [
 	//   "nodejs_compat"
 	// ],
