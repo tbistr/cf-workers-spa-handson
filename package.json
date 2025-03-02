@@ -6,9 +6,14 @@
 		"build": "vite build --mode client && vite build",
 		"preview": "wrangler dev dist/index.js",
 		"deploy": "$npm_execpath run build && wrangler deploy dist/index.js",
+		"db:migrate:generate": "drizzle-kit generate",
+		"db:migrate:local": "wrangler d1 migrations apply cf-react-spa-d1 --local",
+		"db:migrate:remote": "wrangler d1 migrations apply cf-react-spa-d1 --remote",
 		"lint": "biome check --write"
 	},
 	"dependencies": {
+		"@hono/zod-validator": "^0.4.3",
+		"drizzle-orm": "^0.40.0",
 		"hono": "^4.7.2",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
@@ -20,6 +25,7 @@
 		"@hono/vite-dev-server": "^0.18.2",
 		"@types/react": "^19.0.10",
 		"@types/react-dom": "^19.0.4",
+		"drizzle-kit": "^0.30.5",
 		"vite": "^6.2.0",
 		"wrangler": "^3.109.2"
 	}
