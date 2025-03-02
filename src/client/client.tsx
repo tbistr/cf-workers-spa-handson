@@ -1,9 +1,8 @@
 import { hc } from "hono/client";
-import type { InferRequestType, InferResponseType } from "hono/client";
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
-import type { AppType } from "./api/note";
-import type { Note } from "./api/note";
+import type { AppType } from "../server/note";
+import type { Note } from "../server/note";
 
 const client = hc<AppType>("/api");
 
@@ -66,8 +65,7 @@ const CreateNote = () => {
 };
 
 const ShowNotes = () => {
-	type ResType = InferResponseType<typeof client.notes.$get>;
-	const [note, setNote] = useState<ResType>([]);
+	const [note, setNote] = useState<Note[]>([]);
 	const onClick = async () => {
 		const res = await (await client.notes.$get()).json();
 		setNote(res);

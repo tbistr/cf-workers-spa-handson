@@ -4,7 +4,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { z } from "zod";
-import { notes } from "../db/scheme";
+import { notes } from "/db/scheme";
 
 type Bindings = {
 	DB: D1Database;
